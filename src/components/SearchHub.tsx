@@ -57,7 +57,6 @@ export function SearchHub() {
 
   return (
     <div className="w-full">
-      <EngineSelector activeEngine={activeEngine} onEngineChange={handleEngineSelect} />
       <form onSubmit={handleSearch} className="relative group">
         <Input
           type="text"
@@ -68,6 +67,7 @@ export function SearchHub() {
           className="h-14 text-lg bg-white/10 border-none text-white placeholder:text-white/50 backdrop-blur-xl rounded-2xl shadow-2xl focus-visible:ring-1 focus-visible:ring-white/30"
         />
       </form>
+      <EngineSelector activeEngine={activeEngine} onEngineChange={handleEngineSelect} />
     </div>
   )
 }

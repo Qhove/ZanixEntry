@@ -2,6 +2,13 @@ import { Button } from "./ui/button";
 import { ENGINES } from "@/config/engines";
 import type { SearchEngine } from "@/config/engines";
 import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface EngineSelectorProps {
   activeEngine: SearchEngine;
@@ -10,23 +17,41 @@ interface EngineSelectorProps {
 
 export function EngineSelector({ activeEngine, onEngineChange }: EngineSelectorProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-2 mb-6">
-      {ENGINES.map((engine) => (
-        <Button
-          key={engine.id}
-          variant="ghost"
-          size="sm"
-          onClick={() => onEngineChange(engine)}
-          className={cn(
-            "text-white hover:bg-white/20 hover:text-white transition-all duration-300",
-            "bg-white/10 backdrop-blur-md border border-white/10",
-            activeEngine.id === engine.id && "bg-white/30 border-white/30 ring-2 ring-white/50"
-          )}
+    <div className="flex justify-center mt-4">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className={cn(
+              "text-white hover:bg-white/20 hover:text-white transition-all duration-300",
+              "bg-white/10 backdrop-blur-md border border-white/10 rounded-xl px-4 h-10 shadow-lg"
+            )}
+          >
+            <span className="mr-2 font-mono text-sm opacity-70">{activeEngine.icon}</span>
+            <span className="font-medium mr-2">{activeEngine.name}</span>
+            <ChevronDown className="w-4 h-4 opacity-50" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent 
+          className="bg-zinc-900/90 backdrop-blur-xl border-white/10 text-white min-w-[160px] rounded-xl p-1"
+          align="center"
         >
-          <span className="mr-2 font-mono text-xs opacity-70">{engine.icon}</span>
-          {engine.name}
-        </Button>
-      ))}
+          {ENGINES.map((engine) => (
+            <DropdownMenuItem
+              key={engine.id}
+              onClick={() => onEngineChange(engine)}
+              className={cn(
+                "hover:bg-white/10 focus:bg-white/10 focus:text-white cursor-pointer py-2.5 px-3 rounded-lg flex items-center gap-3 transition-colors",
+                activeEngine.id === engine.id && "bg-white/20"
+              )}
+            >
+              <span className="font-mono text-xs opacity-70 w-5 flex justify-center">{engine.icon}</span>
+              <span className="text-sm font-medium">{engine.name}</span>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
