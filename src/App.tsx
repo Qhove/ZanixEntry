@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
+import { EngineSelector } from './components/EngineSelector'
+import { ENGINES } from './config/engines'
+import type { SearchEngine } from './config/engines'
 
 function App() {
   const [wallpaper, setWallpaper] = useState('')
+  const [activeEngine, setActiveEngine] = useState<SearchEngine>(ENGINES[0])
 
   useEffect(() => {
     // Initial high-res placeholder from Unsplash
@@ -15,8 +19,16 @@ function App() {
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
       <div className="relative z-10 w-full max-w-2xl px-4">
-        {/* Search Hub will go here */}
-        <h1 className="text-white text-4xl font-bold text-center mb-8 drop-shadow-lg">Zanix Hub</h1>
+        <h1 className="text-white text-5xl font-bold text-center mb-12 drop-shadow-2xl tracking-tight">
+          Zanix Hub
+        </h1>
+        
+        <EngineSelector 
+          activeEngine={activeEngine} 
+          onEngineChange={setActiveEngine} 
+        />
+
+        {/* Search Input will go here in Task 3 */}
       </div>
     </div>
   )
