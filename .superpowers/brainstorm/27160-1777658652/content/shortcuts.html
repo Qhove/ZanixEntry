@@ -1,0 +1,32 @@
+<h2>How should custom shortcuts (!bangs) work?</h2>
+<p class="subtitle">Example: typing "!w telescope" to search Wikipedia directly.</p>
+
+<div class="options">
+  <div class="option" data-choice="silent" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Silent Shortcuts</h3>
+      <p>Works just like DuckDuckGo. You type "!w" and hit Enter; the system handles the redirect automatically without any visual changes while typing.</p>
+    </div>
+  </div>
+  
+  <div class="option" data-choice="visual-chip" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Visual Feedback (Chip)</h3>
+      <p>As soon as you type "!w", the input field shows a small "Wikipedia" chip or icon to confirm it's switching engines for this search.</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; background: #222; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+         <span style="padding: 2px 6px; background: #555; border-radius: 4px; font-size: 10px; color: #fff;">Wikipedia</span>
+         <div style="flex-grow: 1; height: 15px; background: #333; border-radius: 2px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="autocomplete" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Autocomplete List</h3>
+      <p>Typing "!" opens a small list of available shortcuts so you don't have to remember them all.</p>
+    </div>
+  </div>
+</div>
