@@ -1,0 +1,42 @@
+<h2>How should the search buttons look?</h2>
+<p class="subtitle">Since we have a few options, let's decide on the button style for switching engines.</p>
+
+<div class="options">
+  <div class="option" data-choice="icons" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Logos Only</h3>
+      <p>Clean and compact. Just the recognizable icons (G, B, Y, etc.) in a row.</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; display: flex; gap: 10px; justify-content: center;">
+        <div style="width: 30px; height: 30px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">G</div>
+        <div style="width: 30px; height: 30px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">B</div>
+        <div style="width: 30px; height: 30px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">D</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="option" data-choice="text" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Text Labels</h3>
+      <p>Simple and clear. Text buttons like "Google", "Bing", "DuckDuckGo".</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; display: flex; gap: 5px; justify-content: center;">
+        <span style="padding: 4px 8px; background: #eee; border-radius: 4px; font-size: 12px;">Google</span>
+        <span style="padding: 4px 8px; background: #eee; border-radius: 4px; font-size: 12px;">Bing</span>
+        <span style="padding: 4px 8px; background: #eee; border-radius: 4px; font-size: 12px;">Yahoo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="combo" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Icon + Text</h3>
+      <p>The best of both worlds. Icon followed by the engine name.</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; display: flex; gap: 5px; justify-content: center;">
+        <span style="padding: 4px 8px; background: #eee; border-radius: 4px; font-size: 12px; display: flex; align-items: center; gap: 4px;"><b>G</b> Google</span>
+        <span style="padding: 4px 8px; background: #eee; border-radius: 4px; font-size: 12px; display: flex; align-items: center; gap: 4px;"><b>B</b> Bing</span>
+      </div>
+    </div>
+  </div>
+</div>
