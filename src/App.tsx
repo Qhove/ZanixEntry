@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SearchHub } from './components/SearchHub'
 
 function App() {
-  const [wallpaper, setWallpaper] = useState('')
-
-  useEffect(() => {
-    // Initial high-res placeholder from Unsplash
-    setWallpaper('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80')
-  }, [])
+  const [wallpaper] = useState('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80')
 
   return (
     <div 
@@ -15,6 +10,19 @@ function App() {
       style={{ backgroundImage: `url(${wallpaper})` }}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+      
+      {/* Attribution */}
+      <div className="absolute bottom-4 right-4 z-20">
+        <a 
+          href="https://unsplash.com/?utm_source=ZanixEntry&utm_medium=referral" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white/40 hover:text-white/80 text-xs transition-colors"
+        >
+          Photo by Unsplash
+        </a>
+      </div>
+
       <div className="relative z-10 w-full max-w-2xl px-4">
         <h1 className="text-white text-5xl font-bold text-center mb-12 drop-shadow-2xl tracking-tight">
           Zanix Hub
