@@ -1,5 +1,4 @@
 import { Button } from "./ui/button";
-import { ENGINES } from "@/config/engines";
 import type { SearchEngine } from "@/config/engines";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
@@ -13,9 +12,10 @@ import {
 interface EngineSelectorProps {
   activeEngine: SearchEngine;
   onEngineChange: (engine: SearchEngine) => void;
+  engines: SearchEngine[];
 }
 
-export function EngineSelector({ activeEngine, onEngineChange }: EngineSelectorProps) {
+export function EngineSelector({ activeEngine, onEngineChange, engines }: EngineSelectorProps) {
   return (
     <div className="flex justify-center mt-4">
       <DropdownMenu>
@@ -37,7 +37,7 @@ export function EngineSelector({ activeEngine, onEngineChange }: EngineSelectorP
           className="bg-zinc-900/90 backdrop-blur-xl border-white/10 text-white min-w-[160px] rounded-xl p-1"
           align="center"
         >
-          {ENGINES.map((engine) => (
+          {engines.map((engine) => (
             <DropdownMenuItem
               key={engine.id}
               onClick={() => onEngineChange(engine)}

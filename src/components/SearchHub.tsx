@@ -4,23 +4,32 @@ import { ENGINES } from "@/config/engines"
 import type { SearchEngine } from "@/config/engines"
 import { EngineSelector } from "./EngineSelector"
 import { ShortcutChip } from "./ShortcutChip"
+import { useEngines } from "@/hooks/useEngines"
 
 export function SearchHub() {
+  const { allEngines } = useEngines()
   const [query, setQuery] = useState(() => {
     if (typeof window === 'undefined') return ''
     const params = new URLSearchParams(window.location.search)
     return params.get('q') || ''
   })
-  const [activeEngine, setActiveEngine] = useState<SearchEngine>(() => {
-    if (typeof window === 'undefined') return ENGINES[0]
+  const [activeEngine, setActiveEngine] = useState<SearchEngine>(ENGINES[0])
+  const [overriddenEngine, setOverriddenEngine] = useState<SearchEngine | null>(null)
+
+  useEffect(() => {
     const savedEngine = localStorage.getItem('preferredEngine')
     if (savedEngine) {
-      const found = ENGINES.find(e => e.id === savedEngine)
-      if (found) return found
+      const found = allEngines.find(e => e.id === savedEngine)
+      if (found) {
+        setActiveEngine(found)
+        return
+      }
     }
-    return ENGINES[0]
-  })
-  const [overriddenEngine, setOverriddenEngine] = useState<SearchEngine | null>(null)
+    // Default to first engine if saved one is not found (e.g. deleted)
+    if (allEngines.length > 0) {
+      setActiveEngine(allEngines[0])
+    }
+  }, [allEngines])
 
   useEffect(() => {
     // Sync state if URL changes (e.g. back button)
@@ -34,13 +43,13 @@ export function SearchHub() {
     }
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
-  }, [query])
+  }, [query, allEngines])
 
   const detectShortcut = (val: string) => {
     const match = val.match(/^!([a-z0-9]+)\s/)
     if (match) {
       const shortcut = match[1]
-      const engine = ENGINES.find(e => e.shortcut === shortcut)
+      const engine = allEngines.find(e => e.shortcut === shortcut)
       if (engine) {
         setOverriddenEngine(engine)
         return
@@ -109,7 +118,11 @@ export function SearchHub() {
           }`}
         />
       </form>
-      <EngineSelector activeEngine={activeEngine} onEngineChange={handleEngineSelect} />
+      <EngineSelector 
+        activeEngine={activeEngine} 
+        onEngineChange={handleEngineSelect} 
+        engines={allEngines}
+      />
     </div>
   )
 }
