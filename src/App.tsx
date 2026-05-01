@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { SearchHub } from './components/SearchHub'
+import { TopNav } from './components/TopNav'
 
 function App() {
   const [wallpaper] = useState('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80')
@@ -10,6 +11,8 @@ function App() {
       style={{ backgroundImage: `url(${wallpaper})` }}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+      
+      <TopNav />
       
       {/* Attribution */}
       <div className="absolute bottom-4 right-4 z-20">
@@ -24,8 +27,8 @@ function App() {
       </div>
 
       <div className="relative z-10 w-full max-w-2xl px-4">
-        <h1 className="text-white text-5xl font-bold text-center mb-12 drop-shadow-2xl tracking-tight">
-          Zanix Hub
+        <h1 className="text-white text-6xl font-black text-center mb-12 drop-shadow-2xl tracking-tighter">
+          Zanix Entry
         </h1>
         
         <SearchHub />
