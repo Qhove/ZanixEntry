@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusWidgets } from './widgets/StatusWidgets';
 
 export const TopNav: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ export const TopNav: React.FC = () => {
         {/* Placeholder for left-side widgets */}
       </div>
       <div id="nav-right" className="flex items-center gap-4">
-        {/* Placeholder for right-side settings/profile */}
+        <StatusWidgets />
       </div>
     </nav>
   );
