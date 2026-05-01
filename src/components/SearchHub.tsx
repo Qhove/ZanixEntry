@@ -5,20 +5,31 @@ import type { SearchEngine } from "@/config/engines"
 import { EngineSelector } from "./EngineSelector"
 
 export function SearchHub() {
-  const [query, setQuery] = useState('')
-  const [activeEngine, setActiveEngine] = useState(ENGINES[0])
-
-  useEffect(() => {
+  const [query, setQuery] = useState(() => {
+    if (typeof window === 'undefined') return ''
     const params = new URLSearchParams(window.location.search)
-    const q = params.get('q')
-    if (q) setQuery(q)
-    
+    return params.get('q') || ''
+  })
+  const [activeEngine, setActiveEngine] = useState<SearchEngine>(() => {
+    if (typeof window === 'undefined') return ENGINES[0]
     const savedEngine = localStorage.getItem('preferredEngine')
     if (savedEngine) {
       const found = ENGINES.find(e => e.id === savedEngine)
-      if (found) setActiveEngine(found)
+      if (found) return found
     }
-  }, [])
+    return ENGINES[0]
+  })
+
+  useEffect(() => {
+    // Sync state if URL changes (e.g. back button)
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search)
+      const q = params.get('q')
+      if (q !== query) setQuery(q || '')
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [query])
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value
