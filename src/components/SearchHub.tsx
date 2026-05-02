@@ -91,7 +91,12 @@ export function SearchHub() {
     if (!finalQuery.trim()) return
 
     const searchUrl = engine.url.replace('%s', encodeURIComponent(finalQuery))
-    window.location.href = searchUrl
+    window.open(searchUrl, '_blank')
+    setQuery('')
+    setOverriddenEngine(null)
+    const url = new URL(window.location.href)
+    url.searchParams.delete('q')
+    window.history.replaceState({}, '', url)
   }
 
   const handleEngineSelect = (engine: SearchEngine) => {
