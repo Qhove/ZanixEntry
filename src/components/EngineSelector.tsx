@@ -40,7 +40,7 @@ export function EngineSelector({ activeEngine, onEngineChange, engines }: Engine
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent 
-          className="bg-zinc-900/90 backdrop-blur-xl border-white/10 text-white w-[480px] rounded-2xl p-2 grid grid-cols-3 gap-1"
+          className="bg-zinc-900/90 backdrop-blur-xl border-white/10 text-white w-[calc(100vw-2rem)] sm:w-[480px] max-h-[70vh] overflow-y-auto rounded-2xl p-2 grid grid-cols-2 sm:grid-cols-3 gap-1 custom-scrollbar"
           align="center"
         >
           {engines.map((engine) => (
