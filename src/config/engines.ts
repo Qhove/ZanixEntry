@@ -8,12 +8,12 @@ export interface SearchEngine {
 
 export const ENGINES: SearchEngine[] = [
   { id: 'google', name: 'Google', url: 'https://www.google.com/search?q=%s', icon: '/engineicon/google-logo-search-new-svgrepo-com.svg', shortcut: 'g' },
-  { id: 'bing', name: 'Bing', url: 'https://www.bing.com/search?q=%s', icon: '/engine-default.svg', shortcut: 'b' },
+  { id: 'bing', name: 'Bing', url: 'https://www.bing.com/search?q=%s', icon: '/engineicon/microsoft-bing-svgrepo-com.svg', shortcut: 'b' },
   { id: 'yahoo', name: 'Yahoo', url: 'https://search.yahoo.com/search?p=%s', icon: '/engineicon/yahoo-svgrepo-com.svg', shortcut: 'y' },
   { id: 'duckduckgo', name: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=%s', icon: '/engineicon/duckduckgo-svgrepo-com.svg', shortcut: 'd' },
   { id: 'brave', name: 'Brave', url: 'https://search.brave.com/search?q=%s', icon: '/engineicon/brave-svgrepo-com.svg', shortcut: 'br' },
-  { id: 'wikipedia', name: 'Wikipedia', url: 'https://en.wikipedia.org/wiki/Special:Search?search=%s', icon: '/engine-default.svg', shortcut: 'w' },
-  { id: 'github', name: 'GitHub', url: 'https://github.com/search?q=%s', icon: '/engine-default.svg', shortcut: 'gh' },
+  { id: 'wikipedia', name: 'Wikipedia', url: 'https://en.wikipedia.org/wiki/Special:Search?search=%s', icon: '/engineicon/wikipedia-svgrepo-com.svg', shortcut: 'w' },
+  { id: 'github', name: 'GitHub', url: 'https://github.com/search?q=%s', icon: '/engineicon/github-142-svgrepo-com.svg', shortcut: 'gh' },
   { id: 'yandex', name: 'Yandex', url: 'https://yandex.com/search/?text=%s', icon: '/engine-default.svg', shortcut: 'yx' },
   { id: 'startpage', name: 'StartPage', url: 'https://www.startpage.com/do/search?query=%s', icon: '/engineicon/Startpage_idPApWmQen_1.svg', shortcut: 'sp' },
   { id: 'mojeek', name: 'Mojeek', url: 'https://www.mojeek.com/search?q=%s', icon: '/engineicon/moojek.svg', shortcut: 'mj' },
