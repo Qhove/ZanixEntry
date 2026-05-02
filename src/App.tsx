@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div 
-      className="relative min-h-screen w-full flex items-center justify-center bg-cover bg-center transition-all duration-1000"
+      className="relative h-screen w-full flex items-center justify-center bg-cover bg-center transition-all duration-1000"
       style={{ backgroundImage: `url(${wallpaper})` }}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
