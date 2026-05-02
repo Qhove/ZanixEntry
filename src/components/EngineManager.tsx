@@ -89,8 +89,12 @@ export const EngineManager: React.FC = () => {
           {customEngines.map((engine) => (
             <div key={engine.id} className="flex items-center justify-between bg-zinc-900/50 p-2 rounded border border-zinc-800">
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-400">
-                  {engine.icon || engine.name[0]}
+                <div className="w-6 h-6 rounded bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-400 overflow-hidden">
+                  {engine.icon && (engine.icon.startsWith('/') || engine.icon.endsWith('.svg')) ? (
+                    <img src={engine.icon} alt="" className="w-4 h-4 object-contain" />
+                  ) : (
+                    engine.icon || engine.name[0]
+                  )}
                 </div>
                 <div>
                   <p className="text-sm font-medium">{engine.name}</p>

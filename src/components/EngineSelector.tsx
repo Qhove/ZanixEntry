@@ -28,7 +28,13 @@ export function EngineSelector({ activeEngine, onEngineChange, engines }: Engine
               "bg-white/10 backdrop-blur-md border border-white/10 rounded-xl px-4 h-10 shadow-lg"
             )}
           >
-            <span className="mr-2 font-mono text-sm opacity-70">{activeEngine.icon}</span>
+            <span className="mr-2 font-mono text-sm opacity-70 flex items-center justify-center">
+              {activeEngine.icon.startsWith('/') || activeEngine.icon.endsWith('.svg') ? (
+                <img src={activeEngine.icon} alt="" className="w-4 h-4 object-contain" />
+              ) : (
+                activeEngine.icon
+              )}
+            </span>
             <span className="font-medium mr-2">{activeEngine.name}</span>
             <ChevronDown className="w-4 h-4 opacity-50" />
           </Button>
@@ -46,7 +52,13 @@ export function EngineSelector({ activeEngine, onEngineChange, engines }: Engine
                 activeEngine.id === engine.id && "bg-white/20"
               )}
             >
-              <span className="font-mono text-xs opacity-70 w-5 flex justify-center">{engine.icon}</span>
+              <span className="font-mono text-xs opacity-70 w-5 flex justify-center items-center">
+                {engine.icon.startsWith('/') || engine.icon.endsWith('.svg') ? (
+                  <img src={engine.icon} alt="" className="w-4 h-4 object-contain" />
+                ) : (
+                  engine.icon
+                )}
+              </span>
               <span className="text-sm font-medium">{engine.name}</span>
             </DropdownMenuItem>
           ))}
