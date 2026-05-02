@@ -73,11 +73,12 @@ export const HelpDialog: React.FC = () => {
 
               <section className="pt-2 border-t border-zinc-800">
                 <a 
-                  href="https://github.com/zanix-entry/zanix-entry" 
+                  href="https://github.com/Qhove/ZanixEntry" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors group"
                 >
+
                   <Code className="h-4 w-4" />
                   <span>GitHub Repository</span>
                   <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />

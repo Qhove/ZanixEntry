@@ -31,8 +31,8 @@ A minimalist, high-performance browser homepage designed for speed, versatility,
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/your-repo/zanix-entry.git
-    cd zanix-entry
+    git clone https://github.com/Qhove/ZanixEntry.git
+    cd ZanixEntry
     ```
 
 2.  **Install dependencies**:
