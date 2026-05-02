@@ -35,7 +35,7 @@ function App() {
       <TopNav />
       
       {/* Attribution & Controls */}
-      <div className="absolute bottom-4 right-4 z-20 flex flex-col items-end gap-2">
+      <div className="absolute bottom-8 right-8 z-20 flex flex-col items-end gap-2">
         <button 
           onClick={() => {
             const randomImg = WALLPAPERS[Math.floor(Math.random() * WALLPAPERS.length)]
