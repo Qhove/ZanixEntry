@@ -40,7 +40,7 @@ export function EngineSelector({ activeEngine, onEngineChange, engines }: Engine
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent 
-          className="bg-zinc-900/90 backdrop-blur-xl border-white/10 text-white min-w-[160px] rounded-xl p-1"
+          className="bg-zinc-900/90 backdrop-blur-xl border-white/10 text-white w-[480px] rounded-2xl p-2 grid grid-cols-3 gap-1"
           align="center"
         >
           {engines.map((engine) => (
@@ -48,18 +48,18 @@ export function EngineSelector({ activeEngine, onEngineChange, engines }: Engine
               key={engine.id}
               onClick={() => onEngineChange(engine)}
               className={cn(
-                "hover:bg-white/10 focus:bg-white/10 focus:text-white cursor-pointer py-2.5 px-3 rounded-lg flex items-center gap-3 transition-colors",
+                "hover:bg-white/10 focus:bg-white/10 focus:text-white cursor-pointer py-2 px-3 rounded-xl flex items-center gap-2.5 transition-all duration-200",
                 activeEngine.id === engine.id && "bg-white/20"
               )}
             >
-              <span className="font-mono text-xs opacity-70 w-5 flex justify-center items-center">
+              <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                 {engine.icon.startsWith('/') || engine.icon.endsWith('.svg') ? (
                   <img src={engine.icon} alt="" className="w-4 h-4 object-contain" />
                 ) : (
-                  engine.icon
+                  <span className="font-mono text-xs opacity-70">{engine.icon}</span>
                 )}
-              </span>
-              <span className="text-sm font-medium">{engine.name}</span>
+              </div>
+              <span className="text-xs font-medium truncate">{engine.name}</span>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
