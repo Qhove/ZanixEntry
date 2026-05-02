@@ -14,7 +14,7 @@ export const ENGINES: SearchEngine[] = [
   { id: 'brave', name: 'Brave', url: 'https://search.brave.com/search?q=%s', icon: '/engineicon/brave-svgrepo-com.svg', shortcut: 'br' },
   { id: 'wikipedia', name: 'Wikipedia', url: 'https://en.wikipedia.org/wiki/Special:Search?search=%s', icon: '/engineicon/wikipedia-svgrepo-com.svg', shortcut: 'w' },
   { id: 'github', name: 'GitHub', url: 'https://github.com/search?q=%s', icon: '/engineicon/github-142-svgrepo-com.svg', shortcut: 'gh' },
-  { id: 'yandex', name: 'Yandex', url: 'https://yandex.com/search/?text=%s', icon: '/engine-default.svg', shortcut: 'yx' },
+  { id: 'yandex', name: 'Yandex', url: 'https://yandex.com/search/?text=%s', icon: '/engineicon/yandex.png', shortcut: 'yx' },
   { id: 'startpage', name: 'StartPage', url: 'https://www.startpage.com/do/search?query=%s', icon: '/engineicon/Startpage_idPApWmQen_1.svg', shortcut: 'sp' },
   { id: 'mojeek', name: 'Mojeek', url: 'https://www.mojeek.com/search?q=%s', icon: '/engineicon/moojek.svg', shortcut: 'mj' },
   { id: 'baidu', name: 'Baidu', url: 'https://www.baidu.com/s?wd=%s', icon: '/engineicon/Baidu_id_R7siBYP_0.svg', shortcut: 'ba' },
@@ -23,5 +23,6 @@ export const ENGINES: SearchEngine[] = [
   { id: 'gibiru', name: 'Gibiru', url: 'https://gibiru.com/results.html?q=%s', icon: '/engine-default.svg', shortcut: 'gi' },
   { id: 'presearch', name: 'Presearch', url: 'https://presearch.com/search?q=%s', icon: '/engineicon/presearch-svgrepo-com.svg', shortcut: 'p' },
   { id: 'sogou', name: 'Sogou', url: 'https://www.sogou.com/web?query=%s', icon: '/engineicon/sogou-svgrepo-com.svg', shortcut: 'so' },
-  { id: 'so-com', name: 'So.com', url: 'https://www.so.com/s?q=%s', icon: '/engine-default.svg', shortcut: 's3' },
+  { id: 'so-com', name: 'So.com', url: 'https://www.so.com/s?q=%s', icon: '/engineicon/so.com.ico', shortcut: 's3' },
+  { id: 'perplexity', name: 'Perplexity', url: 'https://www.perplexity.ai/search?q=%s', icon: '/engineicon/perplexity.png', shortcut: 'pp' },
 ];
