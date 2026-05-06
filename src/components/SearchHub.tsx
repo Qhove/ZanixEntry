@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react'
-import { Input } from "@/components/ui/input"
+import { useState, useEffect, useRef } from 'react'
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
 import { ENGINES } from "@/config/engines"
 import type { SearchEngine } from "@/config/engines"
 import { EngineSelector } from "./EngineSelector"
 import { ShortcutChip } from "./ShortcutChip"
 import { useEngines } from "@/hooks/useEngines"
+import { Search } from "lucide-react"
 
 export function SearchHub() {
   const { allEngines } = useEngines()
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [query, setQuery] = useState(() => {
     if (typeof window === 'undefined') return ''
     const params = new URLSearchParams(window.location.search)
@@ -15,6 +18,14 @@ export function SearchHub() {
   })
   const [activeEngine, setActiveEngine] = useState<SearchEngine>(ENGINES[0])
   const [overriddenEngine, setOverriddenEngine] = useState<SearchEngine | null>(null)
+
+  // Auto-expand textarea height
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+    }
+  }, [query])
 
   useEffect(() => {
     const savedEngine = localStorage.getItem('preferredEngine')
@@ -25,14 +36,12 @@ export function SearchHub() {
         return
       }
     }
-    // Default to first engine if saved one is not found (e.g. deleted)
     if (allEngines.length > 0) {
       setActiveEngine(allEngines[0])
     }
   }, [allEngines])
 
   useEffect(() => {
-    // Sync state if URL changes (e.g. back button)
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search)
       const q = params.get('q')
@@ -58,7 +67,7 @@ export function SearchHub() {
     setOverriddenEngine(null)
   }
 
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQueryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = e.target.value
     setQuery(val)
     detectShortcut(val)
@@ -72,8 +81,7 @@ export function SearchHub() {
     window.history.replaceState({}, '', url)
   }
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+  const executeSearch = () => {
     if (!query.trim()) return
 
     let finalQuery = query
@@ -81,7 +89,6 @@ export function SearchHub() {
 
     if (overriddenEngine) {
       engine = overriddenEngine
-      // Strip the bang prefix (e.g., "!w ")
       const match = query.match(/^![a-z0-9]+\s+(.*)/)
       if (match) {
         finalQuery = match[1]
@@ -94,6 +101,13 @@ export function SearchHub() {
     window.open(searchUrl, '_blank')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      executeSearch()
+    }
+  }
+
   const handleEngineSelect = (engine: SearchEngine) => {
     setActiveEngine(engine)
     localStorage.setItem('preferredEngine', engine.id)
@@ -101,22 +115,31 @@ export function SearchHub() {
 
   return (
     <div className="w-full">
-      <form onSubmit={handleSearch} className="relative group flex items-center">
+      <form onSubmit={(e) => { e.preventDefault(); executeSearch(); }} className="relative group flex items-center">
         {overriddenEngine && (
           <div className="absolute left-4 z-10">
             <ShortcutChip engine={overriddenEngine} />
           </div>
         )}
-        <Input
-          type="text"
+        <Textarea
+          ref={textareaRef}
           placeholder={`Search with ${activeEngine.name}...`}
           value={query}
           onChange={handleQueryChange}
+          onKeyDown={handleKeyDown}
           autoFocus
-          className={`h-14 text-lg bg-white/10 border-none text-white placeholder:text-white/50 backdrop-blur-xl rounded-2xl shadow-2xl focus-visible:ring-1 focus-visible:ring-white/30 ${
+          rows={1}
+          className={`min-h-[3.5rem] py-4 text-lg bg-white/10 border-none text-white placeholder:text-white/50 backdrop-blur-xl rounded-2xl shadow-2xl focus-visible:ring-1 focus-visible:ring-white/30 resize-none overflow-hidden pr-16 ${
             overriddenEngine ? 'pl-32' : ''
           }`}
         />
+        <Button 
+          type="submit"
+          size="icon"
+          className="absolute right-2 bg-white/20 hover:bg-white/30 text-white rounded-xl w-10 h-10 transition-all active:scale-95"
+        >
+          <Search className="w-5 h-5" />
+        </Button>
       </form>
       <EngineSelector 
         activeEngine={activeEngine} 
